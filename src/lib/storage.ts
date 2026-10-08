@@ -1,4 +1,4 @@
-import type { PhotoRecord, WeekRecord } from './diary';
+import type { PhotoRecord, StoredWeekRecord, WeekRecord } from './diary';
 
 const DB_NAME = 'calander-diary';
 const DB_VERSION = 1;
@@ -39,10 +39,10 @@ async function transaction<T>(storeName: 'weeks' | 'photos', mode: IDBTransactio
   });
 }
 
-export function getWeek(id: string): Promise<WeekRecord | undefined> {
+export function getWeek(id: string): Promise<StoredWeekRecord | undefined> {
   return transaction('weeks', 'readonly', (store, resolve, reject) => {
     const request = store.get(id);
-    request.onsuccess = () => resolve(request.result as WeekRecord | undefined);
+    request.onsuccess = () => resolve(request.result as StoredWeekRecord | undefined);
     request.onerror = () => reject(request.error ?? new Error('Týden se nepodařilo načíst.'));
   });
 }
@@ -55,10 +55,10 @@ export function putWeek(record: WeekRecord): Promise<void> {
   });
 }
 
-export function getAllWeeks(): Promise<WeekRecord[]> {
+export function getAllWeeks(): Promise<StoredWeekRecord[]> {
   return transaction('weeks', 'readonly', (store, resolve, reject) => {
     const request = store.getAll();
-    request.onsuccess = () => resolve(request.result as WeekRecord[]);
+    request.onsuccess = () => resolve(request.result as StoredWeekRecord[]);
     request.onerror = () => reject(request.error ?? new Error('Zálohu se nepodařilo načíst.'));
   });
 }

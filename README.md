@@ -15,10 +15,11 @@ Otevřete adresu vypsanou Vite. Produkční sestavu ověříte příkazy `npm te
 
 - Psaní do každého dne a do týdenních poznámek, čtyři barvy pera a nastavitelná velikost písma.
 - Automatické ukládání do IndexedDB v tomto prohlížeči; aplikace po načtení funguje i offline.
-- Fotografie JPEG, PNG a WebP se před uložením převedou na JPEG do 320 kB.
+- Fotografie JPEG, PNG a WebP se před uložením převedou na JPEG do 320 kB. Ikona u zápisu připojí fotku přímo k jeho textu; tlačítko **Fotka / skupina** přidá samostatnou fotku. Výběr několika souborů najednou vytvoří skupinu.
+- Klepnutí na fotku otevře prohlížeč. Šipky nebo tah prstem procházejí další fotky stejného dne; tlačítka, kolečko myši nebo gesto dvěma prsty přibližují. Text propojeného zápisu se ukáže přes fotku. V prohlížeči lze propojení změnit nebo přidat vlastní popisek.
 - Předchozí/další týden, návrat na dnešek, přidání a odebrání poznámek a fotografií s možností vrátit odebrání.
 - Tisk aktuálního týdne na jednu stránku A4 na šířku.
-- **Více → Stáhnout zálohu** vytvoří ZIP s textem a fotografiemi. **Více → Obnovit zálohu** ho načte na jiném zařízení; u týdne ponechá novější místní verzi.
+- **Více → Stáhnout zálohu** vytvoří ZIP s textem, skupinami a fotografiemi. **Více → Obnovit zálohu** ho načte na jiném zařízení; u týdne ponechá novější místní verzi. Starší zálohy z první verze lze stále obnovit.
 
 ## Důležité pro data
 
