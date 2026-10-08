@@ -1,0 +1,194 @@
+@import '@fontsource/literata/latin-400.css';
+@import '@fontsource/literata/latin-ext-400.css';
+@import '@fontsource/literata/latin-600.css';
+@import '@fontsource/literata/latin-ext-600.css';
+@import '@fontsource/caveat/latin-500.css';
+@import '@fontsource/caveat/latin-ext-500.css';
+@import '@fontsource/caveat/latin-600.css';
+@import '@fontsource/caveat/latin-ext-600.css';
+
+:root {
+  font-family: 'Literata', Georgia, serif;
+  color: #422823;
+  background: #e9e0d7;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --writing-size: 18px;
+  --paper: #fffaf2;
+  --paper-line: #d9c7b5;
+  --ink: #422823;
+  --muted: #816c61;
+  --rose: #b87972;
+  --rose-light: #f2ded8;
+  --border: #d7c8bb;
+  --blue: #174198;
+  --green: #126a42;
+  --red: #b52938;
+  --black: #292827;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, textarea { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: default; opacity: .55; }
+button:focus-visible, textarea:focus-visible { outline: 3px solid #a85750; outline-offset: 3px; }
+svg { flex: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+.app-shell { min-height: 100vh; background: radial-gradient(circle at 50% -20%, #f6efe8 0, #e9e0d7 65%); padding-bottom: 35px; }
+.topbar { min-height: 88px; display: grid; grid-template-columns: minmax(180px, 1fr) auto minmax(385px, 1fr); align-items: center; gap: 14px; padding: 0 20px 0 25px; background: #f8f1ea; border-bottom: 1px solid #cfc0b3; box-shadow: 0 2px 8px #42282312; position: relative; z-index: 5; }
+.brand { display: flex; align-items: center; gap: 9px; color: #673a33; font-size: 27px; font-weight: 600; white-space: nowrap; }
+.botanical-mark { width: 35px; height: 35px; color: #9b6458; }
+.week-navigation { display: flex; align-items: center; gap: 15px; justify-content: center; }
+.week-navigation h1 { min-width: 285px; margin: 0; font-weight: 600; font-size: clamp(20px, 1.7vw, 27px); text-align: center; white-space: nowrap; }
+.nav-arrow { width: 48px; height: 48px; display: grid; place-items: center; color: #603d35; border: 1px solid #d4c3b4; border-radius: 9px; background: #fff9f2; box-shadow: 0 2px 4px #42282319; }
+.nav-arrow:hover, .tool-button:hover, .page-actions button:hover, .menu-panel button:hover { background: #f6e9df; }
+.today-button { min-width: 76px; min-height: 48px; padding: 0 16px; color: #fffaf6; background: #b87872; border: 1px solid #af6a64; border-radius: 9px; font-size: 15px; font-weight: 600; box-shadow: 0 2px 4px #42282320; }
+.today-button:not(:disabled):hover { background: #a76560; }
+.desktop-tools { justify-self: end; display: flex; align-items: stretch; height: 72px; }
+.ink-picker { display: flex; align-items: center; gap: 3px; }
+.ink-option { min-width: 54px; display: flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center; border: 0; border-left: 1px solid #e3d4c9; background: transparent; color: #5d453e; font-family: system-ui, sans-serif; font-size: 11px; padding: 5px 6px; }
+.ink-option.is-active { background: #edddd2; }
+.ink-option:hover { background: #f3e8df; }
+.ink-dot { width: 22px; height: 22px; display: block; border-radius: 50%; box-shadow: inset 0 0 0 1px #00000025, 0 1px 3px #00000025; }
+.ink-dot.ink-blue { background: var(--blue); }
+.ink-dot.ink-green { background: var(--green); }
+.ink-dot.ink-red { background: var(--red); }
+.ink-dot.ink-black { background: var(--black); }
+.tool-button { min-width: 62px; display: flex; flex-direction: column; gap: 5px; align-items: center; justify-content: center; background: transparent; color: #4b312a; border: 0; border-left: 1px solid #e3d4c9; padding: 4px 8px; font-family: system-ui, sans-serif; font-size: 11px; }
+.tool-button svg { width: 22px; height: 22px; stroke-width: 1.8; }
+.menu-panel { position: absolute; z-index: 20; top: 76px; right: 15px; width: 260px; padding: 8px; border: 1px solid #d2c0b1; border-radius: 11px; background: #fffaf3; box-shadow: 0 12px 30px #30211c30; }
+.menu-panel > button { width: 100%; display: flex; align-items: center; gap: 11px; padding: 12px; border: 0; border-radius: 6px; background: transparent; color: var(--ink); text-align: left; font-family: system-ui, sans-serif; font-size: 14px; }
+.size-controls { display: flex; align-items: center; gap: 7px; border-top: 1px solid var(--border); padding: 11px 8px 4px; font-family: system-ui, sans-serif; font-size: 13px; }
+.size-controls span { flex: 1; }
+.size-controls button { width: 35px; height: 35px; border: 1px solid var(--border); border-radius: 6px; background: #fff; }
+
+main { max-width: 1700px; margin: 0 auto; }
+.diary-spread { margin: 18px 18px 8px; min-height: calc(100vh - 150px); display: grid; grid-template-columns: 1fr 1fr; filter: drop-shadow(0 5px 8px #4b292324); }
+.diary-page { min-width: 0; background: var(--paper); border: 1px solid #c5b3a3; position: relative; }
+.diary-page::after { content: ''; pointer-events: none; position: absolute; inset: 0; opacity: .16; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.14'/%3E%3C/svg%3E"); }
+.days-page { border-radius: 16px 3px 3px 16px; padding: 8px 21px 14px 26px; box-shadow: inset -12px 0 18px #6f4c3420, inset 4px 0 8px #ffffffa3; }
+.week-page { border-left: 0; border-radius: 3px 16px 16px 3px; padding: 20px 28px 25px 38px; box-shadow: inset 12px 0 18px #6f4c3420, inset -4px 0 8px #ffffffa3; }
+.diary-page .page-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #c9b7a4; min-height: 54px; position: relative; z-index: 1; }
+.desktop-page-header { color: #a86c63; font-size: 14px; }
+.desktop-page-header .botanical-mark { width: 27px; height: 27px; }
+.week-page h2 { margin: 0; font-size: 25px; font-weight: 600; }
+.week-page .botanical-mark { width: 42px; height: 42px; }
+.day-row { display: grid; grid-template-columns: 112px minmax(0, 1fr) 29px; align-items: stretch; min-height: max(100px, calc((100vh - 240px) / 7)); border-bottom: 1px solid #d4c2af; position: relative; z-index: 1; }
+.day-row:last-child { border-bottom: 0; }
+.day-row.is-today { background: #f8e6e0a6; }
+.day-row.is-selected:not(.is-today) { background: #faf0e9b0; }
+.day-label { border-right: 1px solid #d9c8b7; padding: 12px 7px 9px 3px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.day-label span { font-size: 14px; line-height: 1.25; }
+.day-label strong { font-size: 26px; font-weight: 600; line-height: 1.2; color: #9c5a53; }
+.day-label small { font-size: 11px; color: var(--muted); }
+.day-content { min-width: 0; padding: 9px 4px 6px 15px; background: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, #cebba753 34px, transparent 35px); }
+.notes-list { display: flex; flex-direction: column; gap: 1px; }
+.note-editor { min-width: 0; display: flex; align-items: flex-start; position: relative; }
+.note-editor textarea { width: 100%; resize: none; display: block; min-height: 95px; overflow: hidden; border: 0; padding: 2px 8px 3px 0; background: transparent; font-family: 'Caveat', cursive; font-size: calc(var(--writing-size) * 1.38); font-weight: 500; line-height: 1.18; }
+.note-editor textarea:focus { background: #fffaf283; outline: 1px dashed #b78979; outline-offset: 2px; }
+.note-editor textarea::placeholder { color: #a99286; opacity: .95; font-size: calc(var(--writing-size) * 1.2); }
+.note-editor--compact textarea { min-height: 34px; font-size: calc(var(--writing-size) * 1.26); line-height: 1.08; padding-top: 0; }
+.note-editor--compact textarea::placeholder { font-size: calc(var(--writing-size) * 1.03); }
+textarea.ink-blue { color: var(--blue); }
+textarea.ink-green { color: var(--green); }
+textarea.ink-red { color: var(--red); }
+textarea.ink-black { color: var(--black); }
+.note-delete { opacity: 0; flex: none; width: 27px; height: 27px; }
+.note-editor:hover .note-delete, .note-editor:focus-within .note-delete { opacity: .7; }
+.icon-button { display: inline-grid; place-items: center; border: 0; border-radius: 50%; background: transparent; color: #9c786b; }
+.icon-button:hover { background: #ead5ca; color: #6e3f36; }
+.row-add { align-self: start; margin-top: 10px; width: 28px; height: 28px; opacity: .65; }
+.day-row:hover .row-add, .day-row:focus-within .row-add { opacity: 1; }
+.week-writing { min-height: calc(100% - 125px); padding: 12px 8px 12px 4px; position: relative; z-index: 1; background: repeating-linear-gradient(to bottom, transparent 0, transparent 38px, #cebba76e 39px, transparent 40px); }
+.week-writing .notes-list { gap: 6px; }
+.page-actions { display: flex; gap: 8px; flex-wrap: wrap; position: relative; z-index: 1; }
+.page-actions button { display: inline-flex; align-items: center; gap: 6px; padding: 8px 11px; color: #774b44; background: #fff8f2d9; border: 1px solid #d6bdb1; border-radius: 7px; font-family: system-ui, sans-serif; font-size: 12px; }
+.photo-list { display: flex; gap: 12px; flex-wrap: wrap; margin: 9px 0; }
+.photo { position: relative; width: 174px; max-width: 100%; margin: 0; padding: 6px 6px 18px; background: #fffdf8; box-shadow: 0 2px 7px #4c2d2450; transform: rotate(-1deg); }
+.photo:nth-child(even) { transform: rotate(1.5deg); }
+.photo img { width: 100%; aspect-ratio: 4 / 3; display: block; object-fit: cover; }
+.photo button { position: absolute; top: -10px; right: -10px; display: grid; place-items: center; width: 28px; height: 28px; background: #fff9f2; border: 1px solid #bfa79a; border-radius: 50%; color: #6a3d35; box-shadow: 0 1px 3px #0002; }
+.photo--compact { width: 90px; padding: 4px 4px 10px; }
+.photo--compact button { width: 24px; height: 24px; }
+.footer-bar { max-width: 1700px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; gap: 12px; color: #806d62; font-family: system-ui, sans-serif; font-size: 12px; }
+.footer-bar span:last-child { display: inline-flex; align-items: center; gap: 5px; }
+.save-error { color: #a4282e; font-weight: 600; }
+.notice { position: fixed; z-index: 40; left: 50%; bottom: 26px; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; max-width: calc(100vw - 24px); padding: 12px 14px; background: #4d302b; color: #fffaf4; border-radius: 8px; box-shadow: 0 7px 24px #0004; font-family: system-ui, sans-serif; font-size: 14px; }
+.notice button { display: inline-flex; align-items: center; gap: 4px; border: 0; background: transparent; color: #fff0dc; font: inherit; white-space: nowrap; }
+.mobile-day-tabs, .mobile-page, .mobile-tools { display: none; }
+
+@media (max-width: 1250px) and (min-width: 761px) {
+  .topbar { grid-template-columns: auto 1fr; row-gap: 0; padding: 8px 18px; }
+  .week-navigation { justify-content: flex-end; }
+  .desktop-tools { grid-column: 1 / -1; justify-self: center; height: 60px; }
+  .week-navigation h1 { min-width: auto; }
+  .day-row { grid-template-columns: 95px minmax(0, 1fr) 27px; }
+  .day-label span { font-size: 12px; }
+  .days-page { padding-left: 13px; padding-right: 10px; }
+  .week-page { padding-left: 25px; padding-right: 18px; }
+}
+
+@media (max-width: 760px) {
+  .app-shell { padding-bottom: 86px; background: #f1e9df; }
+  .topbar { min-height: 123px; display: flex; flex-direction: column; gap: 4px; padding: 8px 12px 12px; box-shadow: none; }
+  .brand { font-size: 29px; }
+  .brand .botanical-mark { width: 28px; height: 28px; }
+  .week-navigation { width: 100%; gap: 7px; justify-content: space-between; }
+  .week-navigation h1 { min-width: 0; font-size: clamp(15px, 4.5vw, 22px); white-space: normal; line-height: 1.2; }
+  .nav-arrow { width: 45px; height: 45px; border-radius: 9px; }
+  .today-button { min-width: 60px; min-height: 45px; font-size: 13px; padding: 0 7px; }
+  .desktop-tools, .diary-spread { display: none; }
+  .menu-panel { position: fixed; top: auto; right: 12px; bottom: 83px; width: min(275px, calc(100vw - 24px)); }
+  .mobile-day-tabs { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; padding: 12px 11px 7px; }
+  .mobile-day-tabs button { min-width: 0; min-height: 65px; padding: 5px 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; border: 0; border-radius: 10px; background: transparent; color: #5c4037; }
+  .mobile-day-tabs button.is-selected { background: #ddb7aa; }
+  .mobile-day-tabs span { font-size: 14px; }
+  .mobile-day-tabs strong { font-size: 20px; font-weight: 600; }
+  .mobile-page { display: block; margin: 4px 11px 12px; }
+  .mobile-paper { position: relative; min-height: calc(100vh - 300px); display: flex; flex-direction: column; padding: 22px 19px 20px; background: var(--paper); border: 1px solid #dfd0be; border-radius: 12px; box-shadow: 0 4px 12px #593a2f1c; }
+  .mobile-paper::before { content: ''; pointer-events: none; position: absolute; inset: 83px 16px 25px; background: repeating-linear-gradient(to bottom, transparent 0, transparent 41px, #cebba771 42px, transparent 43px); }
+  .mobile-page-title { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #c9b7a4; padding-bottom: 9px; margin-bottom: 12px; position: relative; z-index: 1; }
+  .mobile-page-title h2 { margin: 0; font-size: clamp(22px, 6vw, 29px); font-weight: 600; }
+  .mobile-page-title .botanical-mark { width: 30px; height: 30px; }
+  .mobile-paper > .notes-list { min-height: 155px; flex: 1; position: relative; z-index: 1; }
+  .mobile-paper .note-editor textarea { font-size: calc(var(--writing-size) * 1.43); min-height: 110px; line-height: 1.25; }
+  .mobile-paper .note-editor textarea::placeholder { font-size: calc(var(--writing-size) * 1.13); }
+  .mobile-paper .photo-list, .mobile-paper .page-actions, .page-switch { position: relative; z-index: 1; }
+  .mobile-paper .photo { width: min(220px, 85vw); }
+  .mobile-paper .page-actions { margin-top: 22px; }
+  .mobile-paper .page-actions button { min-height: 43px; font-size: 13px; }
+  .page-switch { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 51px; margin-top: 20px; padding: 0 14px; background: #eac8bc; color: #4f302b; border: 0; border-radius: 8px; font-size: 15px; text-align: left; }
+  .page-switch svg:last-child { margin-left: auto; }
+  .footer-bar { padding: 3px 18px 0; font-size: 11px; }
+  .footer-bar span:last-child { display: none; }
+  .mobile-tools { position: fixed; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 8px; left: 0; right: 0; bottom: 0; min-height: 71px; padding: 7px 13px max(7px, env(safe-area-inset-bottom)); background: #f9f1e8; border-top: 1px solid #d7c4b6; box-shadow: 0 -2px 10px #42282316; }
+  .mobile-tools .ink-picker { flex: 1; justify-content: space-around; }
+  .mobile-tools .ink-option { min-width: 44px; min-height: 46px; border: 0; border-radius: 9px; }
+  .mobile-tools .ink-dot { width: 28px; height: 28px; }
+  .mobile-tools .tool-button { min-width: 50px; min-height: 47px; border-left: 1px solid #d8c4b6; }
+  .notice { bottom: 84px; width: max-content; }
+}
+
+@media print {
+  @page { size: A4 landscape; margin: 9mm; }
+  :root { --writing-size: 15px; }
+  html, body, .app-shell { min-height: 0 !important; height: auto !important; padding: 0 !important; margin: 0 !important; background: #fff !important; }
+  .topbar, .menu-panel, .footer-bar, .mobile-day-tabs, .mobile-page, .mobile-tools, .notice, .page-actions, .row-add, .note-delete, .photo button { display: none !important; }
+  main { max-width: none; }
+  .diary-spread { display: grid !important; margin: 0; min-height: 0; height: 185mm; filter: none; break-inside: avoid; }
+  .diary-page { border-color: #b6aaa0; box-shadow: none; }
+  .diary-page::after { display: none; }
+  .days-page { padding: 2mm 3mm 2mm 4mm; }
+  .week-page { padding: 4mm 5mm; }
+  .day-row { min-height: 22mm; grid-template-columns: 25mm 1fr 0; }
+  .day-label { padding: 1mm; }
+  .day-content { padding: 1mm 2mm; }
+  .note-editor textarea { resize: none; font-size: 17px; overflow: visible; }
+  .note-editor--compact textarea { font-size: 16px; }
+  .note-editor textarea::placeholder { color: transparent; }
+  .week-writing { min-height: 0; }
+  .photo { width: 32mm; box-shadow: none; border: 1px solid #ddd; }
+  .photo--compact { width: 18mm; }
+}
