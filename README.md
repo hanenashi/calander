@@ -28,11 +28,11 @@ Firebase konfigurace v `.env` je připravená pro pozdější synchronizaci, ale
 
 ## Hosting
 
-Statická aplikace je připravená pro Firebase Hosting v projektu `pocitatko-7541f`. Po kontrole projektu a schválení zveřejnění:
+Statická aplikace běží na [calander-7541f.web.app](https://calander-7541f.web.app). Hosting používá vlastní web `calander-7541f` v projektu `pocitatko-7541f`; starý web Pociťátka zůstává oddělený. Projekt nemá zapnuté fakturování. Pro další vydání:
 
 ```sh
 npm run build
-firebase deploy --only hosting --project pocitatko-7541f
+npx firebase-tools deploy --only hosting:calander --project pocitatko-7541f
 ```
 
 Hosting podává pouze soubory z `dist`. Původní referenční fotografie z `assets/` se do sestavy nezahrnuje.

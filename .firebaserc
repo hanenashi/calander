@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "pocitatko-7541f"
-  }
+  },
+  "targets": {
+    "pocitatko-7541f": {
+      "hosting": {
+        "calander": [
+          "calander-7541f"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
