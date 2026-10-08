@@ -133,10 +133,11 @@ This allows a completely local PWA with no account or server.
 
 Only add cloud sync after the local app is pleasant to use.
 
-Possible later backend:
-
-- Firebase (already familiar territory)
-- or another very small sync backend
+Chosen later backend: Cloud Firestore in the repurposed Firebase project
+`pocitatko-7541f`. Keep diary text and each compressed JPEG in separate
+documents. Check the full encoded document size before upload; Firestore's hard
+limit is 1 MiB per document. Keep the images substantially smaller than that
+limit, and never make a successful network write a condition for editing.
 
 Sync must be additive, not a dependency.
 
@@ -157,7 +158,9 @@ Reasons:
 
 Target device experience: **10–11 inch Android tablet in landscape**.
 
-GitHub Pages is enough for the first local-only version.
+Firebase Hosting serves the static PWA on the repurposed Firebase project. The
+first version still stores diary data locally; Hosting does not store or sync
+private diary entries.
 
 ---
 
@@ -312,6 +315,7 @@ The smallest version worth putting in Mum's hands:
 8. autosave to IndexedDB
 9. offline PWA
 10. printable weekly layout
+11. backup export and tested restore before regular use
 
 Nothing else is allowed to delay this test.
 
@@ -342,7 +346,7 @@ If Mum actually uses the MVP:
 
 Only after the diary itself is solid:
 
-- account / cloud sync
+- account / Cloud Firestore sync
 - phone + tablet + desktop sync
 - family photo inbox
 - old diary scanning/import
@@ -398,7 +402,7 @@ Drawing data and free-positioned objects can be added later without polluting th
 
 ### Pass A — skeleton
 
-- GitHub Pages-ready static app
+- Firebase Hosting-ready static app
 - PWA manifest + service worker
 - current Czech week calculation
 - landscape weekly layout
